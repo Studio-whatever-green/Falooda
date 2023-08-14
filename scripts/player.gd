@@ -1,5 +1,8 @@
 extends CharacterBody3D
+
 @onready var camera_mount = $camera_mount
+@onready var animation_player = $visuals/mixamo_base/AnimationPlayer
+@onready var visuals = $visuals
 
 
 const SPEED = 5.0
@@ -16,6 +19,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x*sens_horizontal))
+		visuals.rotate_y(deg_to_rad(event.relative.x*sens_vertical * 0))
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y*sens_vertical))
 
 func _physics_process(delta):
@@ -32,10 +36,24 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
+		if animation_player.current_animation != "walking":
+			animation_player.play("walking")
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		
+		visuals.look_at(position + direction)
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		if animation_player.current_animation != "idle":
+			animation_player.play("idle")
 
 	move_and_slide()
+
+# FOR FUtURE REF
+# i have created the basic anim controller
+# and i have made the animtion loopable
+# and added the node into the script
+# so we need to add the animtions when keys are pressed innit
+# now we need to point the character in the direction of key pressed
