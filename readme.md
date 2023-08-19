@@ -1,4 +1,4 @@
-![Falooda Logo](Falooda-1.png)
+![Falooda Logo](Falooda.png)
 ---
 Falooda is a game framework for game development in the GODOT game engine to make making new games easier and quicker!!
 built by STUDIO whatever green ❤️
