@@ -1,0 +1,110 @@
+[gd_scene load_steps=14 format=3 uid="uid://ca8sdkbxib6vx"]
+
+[ext_resource type="PackedScene" uid="uid://cubx5kodwmhax" path="res://scenes/PLAYER_3rd_Person_Controller_TD_Orth.tscn" id="2_qe04h"]
+[ext_resource type="Texture2D" uid="uid://bn8wfhbs1omgo" path="res://textures/grids/Dark/texture_08.png" id="3_cvenm"]
+[ext_resource type="Material" uid="uid://dl13765jw187m" path="res://material/orange.tres" id="4_nkgdp"]
+[ext_resource type="Texture2D" uid="uid://cm5m7nr7dugjd" path="res://textures/grids/Purple/texture_09.png" id="5_ykfjl"]
+[ext_resource type="PackedScene" uid="uid://inmwvi38asm0" path="res://scenes/CAMERA_RIG_3rd_Person_Controller_TD_Orth.tscn" id="6_cpqmo"]
+[ext_resource type="PackedScene" uid="uid://creuqy0mm4jiv" path="res://tools/debug_HUID/debug_HUID.tscn" id="6_oghn5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o4724"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_b3axs"]
+sky_material = SubResource("ProceduralSkyMaterial_o4724")
+
+[sub_resource type="Environment" id="Environment_8tym8"]
+background_mode = 2
+sky = SubResource("Sky_b3axs")
+tonemap_mode = 2
+ssao_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.74902, 0.439216, 0.560784, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgh4c"]
+albedo_texture = ExtResource("3_cvenm")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c5tp"]
+albedo_texture = ExtResource("5_ykfjl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3tbuq"]
+albedo_texture = ExtResource("5_ykfjl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ltmt"]
+albedo_texture = ExtResource("5_ykfjl")
+
+[node name="world" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8tym8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+layers = 3
+shadow_enabled = true
+
+[node name="player" parent="." instance=ExtResource("2_qe04h")]
+transform = Transform3D(0.389365, 0, -0.921084, 0, 1, 0, 0.921084, 0, 0.389365, 0, 10.6171, 0)
+
+[node name="map" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="map"]
+material_override = SubResource("StandardMaterial3D_kgh4c")
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="wall" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.47902, 2, 0)
+material_override = ExtResource("4_nkgdp")
+use_collision = true
+size = Vector3(1, 3, 8)
+
+[node name="wall2" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.51499, 2, 0)
+layers = 2
+material_override = ExtResource("4_nkgdp")
+use_collision = true
+size = Vector3(1, 3, 8)
+
+[node name="wall3" type="CSGBox3D" parent="map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0179855, 2, 4.497)
+layers = 2
+material_override = ExtResource("4_nkgdp")
+use_collision = true
+size = Vector3(1, 3, 10)
+
+[node name="wall5" type="CSGBox3D" parent="map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.7031, 2, 0.404259)
+layers = 2
+material_override = SubResource("StandardMaterial3D_8c5tp")
+use_collision = true
+size = Vector3(1, 3, 3.18816)
+
+[node name="wall6" type="CSGBox3D" parent="map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.45812, 2, -1.79698)
+layers = 2
+material_override = SubResource("StandardMaterial3D_3tbuq")
+use_collision = true
+size = Vector3(1, 3, 3.18816)
+
+[node name="wall7" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -0.927431, 2, 2.77854)
+layers = 2
+material_override = SubResource("StandardMaterial3D_0ltmt")
+use_collision = true
+size = Vector3(1, 3, 3.18816)
+
+[node name="wall4" type="CSGBox3D" parent="map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0179851, 2, -4.497)
+material_override = ExtResource("4_nkgdp")
+use_collision = true
+size = Vector3(1, 3, 10)
+
+[node name="CAMERA_RIG_3rd_Person_Controller_TD_Orth" parent="." instance=ExtResource("6_cpqmo")]
+
+[node name="debug_HUID" parent="." instance=ExtResource("6_oghn5")]

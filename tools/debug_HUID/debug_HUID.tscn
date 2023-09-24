@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://creuqy0mm4jiv"]
+
+[ext_resource type="Script" path="res://tools/debug_HUID/debug_HUID.gd" id="1_3skbt"]
+[ext_resource type="Texture2D" uid="uid://b8jh01vo7o7t3" path="res://Falooda.png" id="4_vsp2v"]
+
+[node name="debug_HUID" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3skbt")
+
+[node name="graphicsSettings" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="controls" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="controls"]
+modulate = Color(1, 0, 0.266667, 1)
+self_modulate = Color(1, 0, 1, 1)
+offset_left = 8.0
+offset_top = 17.0
+offset_right = 151.0
+offset_bottom = 199.0
+text = "Controls
+[W,A,S,D]
+[SPACE] - Jump
+[Q] - Kick
+[H] - Home
+[ESC] - Quit
+[,] - Unlink Mouse
+[F3] - DEBUG MENU "
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1098, 637)
+scale = Vector2(0.116162, 0.116162)
+texture = ExtResource("4_vsp2v")

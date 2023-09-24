@@ -26,10 +26,10 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x*sens_horizontal))
 		visuals.rotate_y(deg_to_rad(event.relative.x*sens_vertical))
-		camera_mount.rotate_x(deg_to_rad(-event.relative.y*sens_vertical))
+		camera_mount.rotate_x(deg_to_rad(-event.relative.y*sens_vertical)) ##UP AND DOWN ROT
 
 func _physics_process(delta):
-	
+
 	##
 	if !animation_player.is_playing():
 		is_locked = false
@@ -79,4 +79,7 @@ func _physics_process(delta):
 		move_and_slide()
 
 # FOR FUtURE REF
-# try an implement smoth movement
+# try an implement smoth mo
+
+## FPS COUNTER
+

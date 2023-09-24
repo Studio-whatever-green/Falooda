@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw3sfna0p23at"]
+
+[ext_resource type="Script" path="res://tools/fps_Counter/FPS_meter.gd" id="1_7iuy8"]
+
+[node name="FPS_counter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Command_canvas" type="CanvasLayer" parent="."]
+
+[node name="FPS_meter" type="Label" parent="Command_canvas"]
+modulate = Color(1, 1, 0, 1)
+offset_right = 336.0
+offset_bottom = 150.0
+uppercase = true
+script = ExtResource("1_7iuy8")
